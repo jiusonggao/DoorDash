@@ -10,11 +10,12 @@ import com.jiusong.doordash.R
 import com.jiusong.doordash.data.model.Status
 import com.jiusong.doordash.data.model.Store
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 /**
  * Created by jiusong.gao on 1/15/21.
  */
-class StoreListAdapter: RecyclerView.Adapter<StoreListAdapter.StoreViewHolder>() {
+class StoreListAdapter @Inject constructor() : RecyclerView.Adapter<StoreListAdapter.StoreViewHolder>() {
 
     private val data = mutableListOf<Store>()
 
