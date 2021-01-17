@@ -6,13 +6,17 @@ package com.jiusong.doordash.data.network
 object DoorDashApiHelper {
 
     private const val limit = 10
+    const val QUERY_KEY_LAT = "lat"
+    const val QUERY_KEY_LNG = "lng"
+    const val QUERY_KEY_OFFSET = "offset"
+    const val QUERY_KEY_LIMIT = "limit"
 
     fun getQueryMap(lat:String, lng:String, offset: Int): Map<String, String> {
         val map = HashMap<String, String>()
-        map["lat"] = lat
-        map["lng"] = lng
-        map["offset"] = offset.toString()
-        map["limit"] = limit.toString()
+        map[QUERY_KEY_LAT] = lat
+        map[QUERY_KEY_LNG] = lng
+        map[QUERY_KEY_OFFSET] = offset.toString()
+        map[QUERY_KEY_LIMIT] = limit.toString()
         return map
     }
 }
