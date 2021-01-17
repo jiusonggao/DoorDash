@@ -18,7 +18,15 @@ class StoresViewModel @ViewModelInject constructor(private val repository: Repos
 
     var stores = MutableLiveData<List<Store>>()
 
-    fun fetchStores() {
+    fun loadStores() {
+        if (stores.value.isNullOrEmpty()) {
+            loadMoreStores()
+        } else {
+            stores.value = repository.stores
+        }
+    }
+
+    fun loadMoreStores() {
         viewModelScope.launch {
             val list = repository.getStores(lat, lng)
             stores.value = list

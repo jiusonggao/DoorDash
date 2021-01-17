@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Singleton
 class Repository@Inject constructor(private val doorDashService: DoorDashAPi) {
     private var offset = 0
-    private var stores= mutableListOf<Store>()
+    var stores= mutableListOf<Store>()
 
     suspend fun getStores(lat: String, lng: String): List<Store> {
         val map = DoorDashApiHelper.getQueryMap(lat, lng, offset)
