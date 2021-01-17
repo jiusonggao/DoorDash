@@ -3,6 +3,7 @@ package com.jiusong.doordash.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,20 +38,31 @@ class MainActivity : AppCompatActivity(), StoreItemClickListener {
             layoutManager = viewManager
             adapter = storesAdapter
         }
-        // Observer stores
+        observeStores()
+        // Handle scroll to the end of the list
+        handleListScrolling()
+        // Fetch stores
+        viewModel.loadStores()
+    }
+
+    private fun observeStores() {
         viewModel.stores.observe(this, Observer {
             if (it.isNotEmpty()) {
                 storesAdapter.addStores(it)
             }
+            binding.progressBar.visibility = View.GONE
         })
-        // Fetch stores
-        viewModel.loadStores()
-        // Handle scroll to the end of the list
+    }
+
+    private fun handleListScrolling() {
         binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 // Fetch more stores.
-                if (!recyclerView.canScrollVertically(1)) viewModel.loadMoreStores()
+                if (!recyclerView.canScrollVertically(1)) {
+                    viewModel.loadMoreStores()
+                    binding.progressBar.visibility = View.VISIBLE
+                }
             }
         })
     }

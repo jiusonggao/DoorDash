@@ -5,7 +5,7 @@ package com.jiusong.doordash.data.network
  */
 object DoorDashApiHelper {
 
-    private const val limit = 20
+    private const val limit = 10
 
     fun getQueryMap(lat:String, lng:String, offset: Int): Map<String, String> {
         val map = HashMap<String, String>()
