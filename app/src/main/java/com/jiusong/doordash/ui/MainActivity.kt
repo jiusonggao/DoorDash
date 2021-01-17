@@ -1,5 +1,6 @@
 package com.jiusong.doordash.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,12 +8,15 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jiusong.doordash.databinding.ActivityMainBinding
+import com.jiusong.doordash.ui.recycerview.StoreItemClickListener
+import com.jiusong.doordash.ui.recycerview.StoreListAdapter
+import com.jiusong.doordash.util.DoorDashConstants
 import com.jiusong.doordash.viewmodel.StoresViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), StoreItemClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: StoresViewModel by viewModels()
@@ -27,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupStoreList() {
         val viewManager = LinearLayoutManager(this)
+        storesAdapter.setListener(this)
         binding.recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = viewManager
@@ -48,5 +53,11 @@ class MainActivity : AppCompatActivity() {
                 if (!recyclerView.canScrollVertically(1)) viewModel.fetchStores()
             }
         })
+    }
+
+    override fun onClick(storeId: String) {
+        val intent = Intent(this, RestaurantDetailActivity::class.java)
+        intent.putExtra(DoorDashConstants.STORE_ID, storeId)
+        startActivity(intent)
     }
 }

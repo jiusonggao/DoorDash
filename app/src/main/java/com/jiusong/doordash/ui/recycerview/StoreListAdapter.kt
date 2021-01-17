@@ -1,4 +1,4 @@
-package com.jiusong.doordash.ui
+package com.jiusong.doordash.ui.recycerview
 
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +18,7 @@ import javax.inject.Inject
 class StoreListAdapter @Inject constructor() : RecyclerView.Adapter<StoreListAdapter.StoreViewHolder>() {
 
     private val data = mutableListOf<Store>()
+    private lateinit var listener: StoreItemClickListener
 
     class StoreViewHolder(v: View): RecyclerView.ViewHolder(v) {
         private val image: ImageView = v.findViewById(R.id.imageView)
@@ -54,10 +55,17 @@ class StoreListAdapter @Inject constructor() : RecyclerView.Adapter<StoreListAda
 
     override fun onBindViewHolder(holder: StoreViewHolder, position: Int) {
         holder.bind(data[position])
+        holder.itemView.setOnClickListener {
+            if (this::listener.isInitialized) listener.onClick(data[position].id)
+        }
     }
 
     fun addStores(stores: List<Store>) {
         data.addAll(stores)
         notifyDataSetChanged()
+    }
+
+    fun setListener(listener: StoreItemClickListener) {
+        this.listener = listener
     }
 }

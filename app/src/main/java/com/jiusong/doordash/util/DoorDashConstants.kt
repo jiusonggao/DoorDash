@@ -5,4 +5,5 @@ package com.jiusong.doordash.util
  */
 object DoorDashConstants {
     const val  DOOR_DASH_API_BASE_URL = "https://api.doordash.com/"
+    const val STORE_ID = "STORE_ID"
 }

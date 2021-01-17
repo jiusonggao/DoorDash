@@ -14,4 +14,7 @@ data class Store (val id: String,
                   val cover_img_url: String,
                   val header_img_url: String,
                   val next_close_time: String,
-                  val next_open_time: String)
+                  val next_open_time: String,
+                  val menus: List<Menu>,
+                  val average_rating: Float,
+                  val distance_from_consumer: String)
