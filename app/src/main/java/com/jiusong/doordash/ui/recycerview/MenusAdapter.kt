@@ -23,7 +23,11 @@ class MenusAdapter(private val data: List<Item>): RecyclerView.Adapter<MenusAdap
         fun bind(item: Item) {
             Picasso.get().load(item.img_url).into(image)
             name.text = item.name
-            price.text = item.price
+            price.text = getPriceText(item.price)
+        }
+
+        private fun getPriceText(price: String): String {
+            return "$" + price.subSequence(0, price.length -2) + "." + price.substring(price.length -2)
         }
     }
 

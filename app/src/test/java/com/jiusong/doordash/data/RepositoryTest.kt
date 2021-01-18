@@ -44,7 +44,7 @@ class RepositoryTest {
             val stores = resources.data
             assertNotNull(stores)
             if (stores != null) {
-                val store = stores.get(stores.size/2)
+                val store = stores[stores.size/2]
                 assertEquals(store, repository.getStore(store.id))
             }
         }

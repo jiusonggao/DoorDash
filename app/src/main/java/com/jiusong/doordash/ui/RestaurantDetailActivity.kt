@@ -36,7 +36,7 @@ class RestaurantDetailActivity : AppCompatActivity() {
             Picasso.get().load(it.cover_img_url).into(binding.coverImage)
             binding.storeName.text = it.name
             binding.storeDescription.text = it.description
-            binding.storeRateDis.text = it.average_rating.toString()
+            binding.storeRateDis.text = viewModel.getStoreRateDistanceText(it)
             setupPopularMenus(it.menus)
         })
     }

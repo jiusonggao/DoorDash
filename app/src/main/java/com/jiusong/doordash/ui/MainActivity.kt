@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,10 +55,12 @@ class MainActivity : AppCompatActivity(), StoreItemClickListener {
                 }
                 Status.ERROR -> {
                     binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, it.msg, Toast.LENGTH_LONG)
+                        .show()
                 }
                 Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
-                    it.data?.let { it1 -> storesAdapter.addStores(it1) }
+                    it.data?.let { list -> storesAdapter.addStores(list) }
                 }
             }
         })

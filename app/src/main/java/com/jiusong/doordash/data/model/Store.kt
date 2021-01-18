@@ -17,4 +17,6 @@ data class Store (val id: String,
                   val next_open_time: String,
                   val menus: List<Menu>,
                   val average_rating: Float,
+                  val num_ratings: String,
+                  val price_range: Int,
                   val distance_from_consumer: String)
