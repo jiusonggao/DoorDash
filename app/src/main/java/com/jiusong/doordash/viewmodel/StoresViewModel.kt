@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jiusong.doordash.data.Repository
 import com.jiusong.doordash.data.model.Store
+import com.jiusong.doordash.data.network.Resource
+import com.jiusong.doordash.data.network.Status
 import kotlinx.coroutines.launch
 
 /**
@@ -16,13 +18,13 @@ class StoresViewModel @ViewModelInject constructor(private val repository: Repos
     private val lat = "37.422740"
     private val lng = "-122.139956"
 
-    var stores = MutableLiveData<List<Store>>()
+    var stores = MutableLiveData<Resource<List<Store>>>()
 
     fun loadStores() {
-        if (stores.value.isNullOrEmpty()) {
+        if (stores.value == null || stores.value!!.data.isNullOrEmpty()) {
             loadMoreStores()
         } else {
-            stores.value = repository.stores
+            stores.value = Resource(Status.SUCCESS, repository.stores, "")
         }
     }
 

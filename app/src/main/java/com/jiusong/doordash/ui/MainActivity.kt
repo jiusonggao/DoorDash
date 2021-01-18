@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jiusong.doordash.data.network.Status
 import com.jiusong.doordash.databinding.ActivityMainBinding
 import com.jiusong.doordash.ui.recycerview.StoreItemClickListener
 import com.jiusong.doordash.ui.recycerview.StoreListAdapter
@@ -47,10 +48,18 @@ class MainActivity : AppCompatActivity(), StoreItemClickListener {
 
     private fun observeStores() {
         viewModel.stores.observe(this, Observer {
-            if (it.isNotEmpty()) {
-                storesAdapter.addStores(it)
+            when(it.status) {
+                Status.LOADING -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                Status.ERROR -> {
+                    binding.progressBar.visibility = View.GONE
+                }
+                Status.SUCCESS -> {
+                    binding.progressBar.visibility = View.GONE
+                    it.data?.let { it1 -> storesAdapter.addStores(it1) }
+                }
             }
-            binding.progressBar.visibility = View.GONE
         })
     }
 

@@ -40,9 +40,13 @@ class RepositoryTest {
     @Test
     fun getStore() {
         runBlocking {
-            val stores = repository.getStores(lat, lng)
-            val store = stores[stores.size/2]
-            assertEquals(store, repository.getStore(store.id))
+            val resources = repository.getStores(lat, lng)
+            val stores = resources.data
+            assertNotNull(stores)
+            if (stores != null) {
+                val store = stores.get(stores.size/2)
+                assertEquals(store, repository.getStore(store.id))
+            }
         }
     }
 }
