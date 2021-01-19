@@ -2,6 +2,7 @@ package com.jiusong.doordash.data
 
 import com.jiusong.doordash.data.network.DoorDashAPi
 import com.jiusong.doordash.data.network.DoorDashServiceFactory
+import com.jiusong.doordash.data.network.ResponseHandler
 import com.jiusong.doordash.util.DoorDashConstants
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -23,6 +24,7 @@ class RepositoryTest {
     fun setUp() {
         val doorDashAPi = DoorDashServiceFactory.retrofit(DoorDashConstants.DOOR_DASH_API_BASE_URL).create(DoorDashAPi::class.java)
         repository = Repository(doorDashAPi)
+        repository.resourceHandler = ResponseHandler()
     }
 
     @After
