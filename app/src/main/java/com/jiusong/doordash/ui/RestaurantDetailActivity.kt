@@ -27,8 +27,20 @@ class RestaurantDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRestaurantDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupToolBar()
         setupUI()
         viewModel.getStore(intent.getStringExtra(DoorDashConstants.STORE_ID))
+    }
+
+    private fun setupToolBar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun setupUI() {
@@ -37,6 +49,7 @@ class RestaurantDetailActivity : AppCompatActivity() {
             binding.storeName.text = it.name
             binding.storeDescription.text = it.description
             binding.storeRateDis.text = viewModel.getStoreRateDistanceText(it)
+            supportActionBar?.title = it.name
             setupPopularMenus(it.menus)
         })
     }

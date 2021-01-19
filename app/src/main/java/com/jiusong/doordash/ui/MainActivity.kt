@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jiusong.doordash.R
 import com.jiusong.doordash.data.network.Status
 import com.jiusong.doordash.databinding.ActivityMainBinding
 import com.jiusong.doordash.ui.recycerview.StoreItemClickListener
@@ -29,7 +30,13 @@ class MainActivity : AppCompatActivity(), StoreItemClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupToolbar()
         setupStoreList()
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = getString(R.string.discover)
     }
 
     private fun setupStoreList() {
