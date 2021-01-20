@@ -25,4 +25,10 @@ Network API:
     DoorDashApi, make call to DoorDash server to fetch stores.
     ResponseHandler, handles different cases of network request responses.
 
+Testing:
+    testing DoorDashApi with mockServer, tests both success and fail responses.
+    testing Repository with real requests, test both success and fail requests.
+    testing RestaurantDetailViewModel for formatting store info string.
+    testing DoorDashApiHelper for getting request query map.
+
 
