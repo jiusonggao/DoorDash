@@ -1,0 +1,28 @@
+A DoorDash lite application which will go to the web and display the data.
+
+The app has 2 screens (list of restaurants and restaurant detail page)
+
+App is wrriten with Kotlin, MVVM architure, and uses Hilt dependency injecton for viewmodels, repository and most of other classes.
+
+App uses retrofit for fetching restaurants from Doordash service: https://api.doordash.com/v1/store_feed/?lat=37.422740&lng=-122.139956&offset=0&limit=5
+
+App uses coroutine for making network request in the background.
+
+Some critial classes in the proejct:
+
+Activities : 
+    MainActivity, displays a list of restaurants.
+    RestaurantDetailActivity, display a restaurant's detail infomation, includes rating, distance, and a list of popular items.
+
+ViewModels:
+    StoresViewModel, provides a list of stores for MainActivity.
+    RestaurantDetailVidewModel, provides store details for RestaurantDetailActivity
+
+Reposity: 
+    Reposity, single data truth of the app, call DoorDashApi service to fetch stores, provides data for StoresViewModel and RestaurantDetailVidewModel.
+
+Network API:
+    DoorDashApi, make call to DoorDash server to fetch stores.
+    ResponseHandler, handles different cases of network request responses.
+
+
