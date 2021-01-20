@@ -42,4 +42,18 @@ class DoorDashApiTest {
         assert(storeFeed.next_offset == 5)
         assert(storeFeed.stores.size == 5)
     }
+
+    @Test
+    fun testFetchStoresFail() {
+        // Assign
+        val response = MockResponse()
+            .setResponseCode(HttpURLConnection.HTTP_OK)
+            .setBody(FileReader("store_feed_no_offset_limit.json").content)
+        mockWebServer.enqueue(response)
+        // Act
+        val storeFeed = runBlocking { apiService.getStores(HashMap<String, String>()) }
+        // Assert
+        assert(storeFeed.limit[0] == "This field is required.")
+        assert(storeFeed.offset[0] == "This field is required.")
+    }
 }

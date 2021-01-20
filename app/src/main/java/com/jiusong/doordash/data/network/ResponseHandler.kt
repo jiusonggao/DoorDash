@@ -34,6 +34,7 @@ open class ResponseHandler @Inject constructor() {
     private fun getErrorMsg(code: Int): String {
         return when(code) {
             ErrorCodes.SocketTimeOut.code -> "Timeout"
+            400 -> "Bad Request"
             401 -> "Unauthorised"
             404 -> "Not Found"
             else -> "Something went wrong"

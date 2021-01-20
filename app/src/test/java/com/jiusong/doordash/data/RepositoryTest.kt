@@ -3,6 +3,7 @@ package com.jiusong.doordash.data
 import com.jiusong.doordash.data.network.DoorDashAPi
 import com.jiusong.doordash.data.network.DoorDashServiceFactory
 import com.jiusong.doordash.data.network.ResponseHandler
+import com.jiusong.doordash.data.network.Status
 import com.jiusong.doordash.util.DoorDashConstants
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -32,10 +33,18 @@ class RepositoryTest {
     }
 
     @Test
-    fun getStores() {
+    fun testGetStoresSuccess() {
         runBlocking {
-            val stores = repository.getStores(lat, lng)
-            assertNotNull(stores)
+            val resource = repository.getStores(lat, lng)
+            assertEquals(Status.SUCCESS, resource.status)
+        }
+    }
+
+    @Test
+    fun testGetStoresFail() {
+        runBlocking {
+            val resource = repository.getStores(lat, "null")
+            assertEquals(Status.ERROR, resource.status)
         }
     }
 
