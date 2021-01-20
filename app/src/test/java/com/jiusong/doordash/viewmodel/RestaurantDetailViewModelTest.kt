@@ -1,10 +1,8 @@
 package com.jiusong.doordash.viewmodel
 
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.jiusong.doordash.FileReader
 import com.jiusong.doordash.data.Repository
-import com.jiusong.doordash.data.model.Store
 import com.jiusong.doordash.data.model.StoreFeedResponse
 import com.jiusong.doordash.data.network.DoorDashAPi
 import com.jiusong.doordash.data.network.DoorDashServiceFactory
@@ -18,15 +16,15 @@ import org.junit.Assert.*
 /**
  * Created by jiusong.gao on 1/18/21.
  */
-class RestaurantDetailModelTest {
+class RestaurantDetailViewModelTest {
 
-    private lateinit var viewModel: RestaurantDetailModel
+    private lateinit var viewModel: RestaurantDetailViewModel
 
     @Before
     fun setUp() {
         val doorDashAPi = DoorDashServiceFactory.retrofit(DoorDashConstants.DOOR_DASH_API_BASE_URL).create(DoorDashAPi::class.java)
         val repo = Repository(doorDashAPi)
-        viewModel = RestaurantDetailModel(repo)
+        viewModel = RestaurantDetailViewModel(repo)
     }
 
     @After

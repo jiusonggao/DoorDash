@@ -10,7 +10,7 @@ import com.jiusong.doordash.data.model.Menu
 import com.jiusong.doordash.databinding.ActivityRestaurantDetailBinding
 import com.jiusong.doordash.ui.recycerview.MenusAdapter
 import com.jiusong.doordash.util.DoorDashConstants
-import com.jiusong.doordash.viewmodel.RestaurantDetailModel
+import com.jiusong.doordash.viewmodel.RestaurantDetailViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class RestaurantDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRestaurantDetailBinding
-    private val viewModel: RestaurantDetailModel by viewModels()
+    private val viewModel: RestaurantDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

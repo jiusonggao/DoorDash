@@ -10,7 +10,7 @@ import java.lang.StringBuilder
 /**
  * Created by jiusong.gao on 1/16/21.
  */
-class RestaurantDetailModel @ViewModelInject constructor(private val repository: Repository): ViewModel() {
+class RestaurantDetailViewModel @ViewModelInject constructor(private val repository: Repository): ViewModel() {
 
     var store = MutableLiveData<Store>()
 
