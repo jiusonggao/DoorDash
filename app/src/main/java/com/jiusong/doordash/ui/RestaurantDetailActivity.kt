@@ -29,7 +29,7 @@ class RestaurantDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupToolBar()
         setupUI()
-        viewModel.getStore(intent.getStringExtra(DoorDashConstants.STORE_ID))
+        viewModel.getStore(intent.getStringExtra(DoorDashConstants.STORE_ID).orEmpty())
     }
 
     private fun setupToolBar() {
