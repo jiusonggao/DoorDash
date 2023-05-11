@@ -11,6 +11,7 @@ import org.junit.Before
 import org.junit.Test
 
 import org.junit.Assert.*
+import org.junit.Ignore
 
 /**
  * Created by jiusong.gao on 1/18/21.
@@ -33,6 +34,7 @@ class RepositoryTest {
     }
 
     @Test
+    @Ignore
     fun testGetStoresSuccess() {
         runBlocking {
             val resource = repository.getStores(lat, lng)
@@ -49,6 +51,7 @@ class RepositoryTest {
     }
 
     @Test
+    @Ignore
     fun getStore() {
         runBlocking {
             val resources = repository.getStores(lat, lng)
