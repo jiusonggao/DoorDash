@@ -4,9 +4,9 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: android
 trigger_map:
 - push_branch: "*"
-  workflow: primary
+  workflow: primary, lint_check
 - pull_request_source_branch: "*"
-  workflow: primary
+  workflow: primary, lint_check
 workflows:
   deploy:
     description: |
@@ -60,6 +60,8 @@ workflows:
 
       Next steps:
       - Check out [Getting started with Android apps](https://devcenter.bitrise.io/en/getting-started/getting-started-with-android-apps.html).
+    before_run:
+      - primary
     steps:
     - android-lint@0:
         inputs:
@@ -70,6 +72,8 @@ workflows:
 
       Next steps:
       - Check out [Getting started with Android apps](https://devcenter.bitrise.io/en/getting-started/getting-started-with-android-apps.html).
+    before_run:
+        - primary
     steps:
     - android-unit-test@1:
         inputs:
