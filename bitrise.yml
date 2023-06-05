@@ -15,7 +15,7 @@ workflows:
       - Check out [Getting started with Android apps](https://devcenter.bitrise.io/en/getting-started/getting-started-with-android-apps.html) for signing and deployment options.
       - [Set up code signing with *Android Sign* Step](https://devcenter.bitrise.io/en/code-signing/android-code-signing/android-code-signing-using-the-android-sign-step.html).
     steps:
-      - git-clone@8: {}
+      - git-clone@8: { }
       - install-missing-android-tools@3:
           inputs:
             - gradlew_path: $PROJECT_LOCATION/gradlew
@@ -40,7 +40,7 @@ workflows:
             - cache_level: none
       - sign-apk@1:
           run_if: '{{getenv "BITRISEIO_ANDROID_KEYSTORE_URL" | ne ""}}'
-      - deploy-to-bitrise-io@2: {}
+      - deploy-to-bitrise-io@2: { }
   primary:
     description: |
       Runs tests.
@@ -48,8 +48,8 @@ workflows:
       Next steps:
       - Check out [Getting started with Android apps](https://devcenter.bitrise.io/en/getting-started/getting-started-with-android-apps.html).
     steps:
-      - git-clone@8: {}
-      - restore-gradle-cache@1: {}
+      - git-clone@8: { }
+      - restore-gradle-cache@1: { }
       - install-missing-android-tools@3:
           inputs:
             - gradlew_path: $PROJECT_LOCATION/gradlew
@@ -79,7 +79,7 @@ workflows:
             - project_location: $PROJECT_LOCATION
             - variant: $VARIANT
             - cache_level: none
-      - save-gradle-cache@1: {}
+      - save-gradle-cache@1: { }
 meta:
   bitrise.io:
     stack: linux-docker-android-20.04
