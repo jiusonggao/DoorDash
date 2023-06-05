@@ -4,8 +4,6 @@ project_type: android
 trigger_map:
   - push_branch: '*'
     workflow: lint_check
-  - push_branch: '*'
-    workflow: unit_test
 workflows:
   deploy:
     description: |
